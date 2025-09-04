@@ -1,1 +1,70 @@
+#include<iostream>
+using namespace std;
 
+class ResearchPaper{
+    private:
+    string* authorNames;
+    int num;
+
+    public:
+    ResearchPaper(string names[], int n){
+        num=n;
+        authorNames=new string[num];
+        for(int i=0;i<num;i++){
+            authorNames[i]=names[i];
+        }
+    }
+
+    ResearchPaper(const ResearchPaper& copy){
+        num=copy.num;
+        authorNames=new string[num];
+        for(int i=0;i<num;i++){
+            authorNames[i]=copy.authorNames[i];
+        }
+    }
+
+    ResearchPaper& operator=(const ResearchPaper& copy){
+        if(this==&copy){
+            return *this;
+            delete[] authorNames;
+        }
+
+        num=copy.num;
+        authorNames=new string[num];
+        for(int i=0;i<num;i++){
+            authorNames[i]=copy.authorNames[i];
+        }
+
+        return *this;
+    }
+
+    void displayAuthorNames() const{
+        for(int i=0;i<num;i++){
+            cout<<authorNames[i]<<endl;
+        }
+        cout<<endl;
+    }
+
+    ~ResearchPaper(){
+        delete[] authorNames;
+    }
+};
+
+int main(){
+    string names[3]={"Aiman", "Uroosa", "Lubna"};
+    ResearchPaper r1(names, 3);
+    ResearchPaper r2=r1;
+    string names2[2]={"Zubair", "Khalid"};
+    ResearchPaper r3(names2, 2);
+    cout<<endl;
+    cout<<"Names Of Authors Of Paper 03(Before Modifying Through Assignment Operator..)"<<endl;
+    r3.displayAuthorNames();
+    r3=r1;
+    cout<<"Names Of Authors Of Paper 01: "<<endl;
+    r1.displayAuthorNames();
+    cout<<"Names Of Authors Of Paper 02: "<<endl;
+    r2.displayAuthorNames();
+     cout<<"Names Of Authors Of Paper 03: "<<endl;
+    r3.displayAuthorNames();
+    return 0;
+}
