@@ -1,1 +1,48 @@
+#include<iostream>
+using namespace std;
 
+class Box{
+    private:
+    int* volume;
+
+    public:
+    Box(){
+        volume=new int(0);
+    }
+
+    Box(int vol){
+        volume=new int(vol);
+    }
+
+    Box(const Box& copy){
+        volume=new int(*copy.volume);
+    }
+
+    void changeVolume(int newVol){
+        *volume=newVol;
+    }
+
+    void displayVolume(){
+        cout<<"Volume: "<<*volume<<" cubic metre" <<endl<<endl;
+    }
+
+    ~Box(){
+        delete volume;
+    }
+};
+
+int main(){
+    Box b1;
+    b1.changeVolume(16);
+    cout<<endl<<"Volume Of Original Box: "<<endl;
+    b1.displayVolume();
+    Box b2=b1;
+    cout<<"Volume Of Copied Box: "<<endl;
+    b2.displayVolume();
+    b2.changeVolume(25);
+    cout<<"Volume Of Copied Box(Changed): "<<endl;
+    b2.displayVolume();
+    cout<<"Volume Of Original Box(Unchanged): "<<endl;
+    b1.displayVolume();
+    return 0;
+}
