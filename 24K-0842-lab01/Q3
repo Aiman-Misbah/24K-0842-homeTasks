@@ -1,1 +1,51 @@
+#include<iostream>
+using namespace std;
 
+class Exam{
+    private:
+    double* marks;
+    int num;
+
+    public:
+    Exam(){
+        cout<<endl<<"Enter the number of subjects: ";
+        cin>>num;
+        marks=new double[num];
+        for(int i=0;i<num;i++){
+            cout<<"Enter the marks of subject "<<(i+1)<<" : ";
+            cin>>marks[i];
+        }
+    }
+
+    void changeMarks(double m, int index){
+        if(index>=0 && index<num){
+        marks[index]=m;
+        }
+    }
+
+    void displayMarks(){
+        for(int i=0;i<num;i++){
+            cout<<"Marks of subject "<<(i+1)<<" : "<<marks[i]<<endl;
+        }
+        cout<<endl;
+    }
+
+    ~Exam(){
+        delete[] marks;
+    }
+};
+
+int main(){
+    Exam e1;
+    cout<<endl<<"Marks Of Original Object: "<<endl;
+    e1.displayMarks();
+    Exam e2=e1;
+    cout<<"Marks Of Copied Object: "<<endl;
+    e2.displayMarks();
+    e2.changeMarks(78.87, 1);
+    cout<<"Marks Of Copied Object(Changed): "<<endl;
+    e2.displayMarks();
+    cout<<"Marks Of Original Object(Also Changed-Shallow Copy Issue)"<<endl;
+    e1.displayMarks();
+    return 0;
+}
