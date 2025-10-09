@@ -1,4 +1,4 @@
-// If no safe route exists, backtrackign keeps exploring all possible paths and then systematically returns(backtracks) from every dead end until no options remain.In this case, the algorithm ultimately returns false, meaning no path was found.The specific line responsible for this behaviour is the return false; statement after backtracking inside the recursive function, which signals that the current route failed and the program should backtrack to try another path.
+// If no safe route exists, backtracking keeps exploring all possible paths and then systematically returns(backtracks) from every dead end until no options remain.In this case, the algorithm ultimately returns false, meaning no path was found.The specific line responsible for this behaviour is the return false; statement after backtracking inside the recursive function, which signals that the current route failed and the program should backtrack to try another path.
 
 #include <iostream>
 using namespace std;
